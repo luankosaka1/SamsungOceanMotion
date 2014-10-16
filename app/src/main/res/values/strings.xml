@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SamsungMotion</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="lbl_Passos">Passos</string>
+    <string name="lbl_calorias">Calorias</string>
+    <string name="value_init_passos">0 passos</string>
+    <string name="value_init_calorias">0 kcal</string>
+
+</resources>
