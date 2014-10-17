@@ -2,14 +2,21 @@ package android.kosaka.br.samsungmotion;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.samsung.android.sdk.SsdkUnsupportedException;
+import com.samsung.android.sdk.motion.Smotion;
+import com.samsung.android.sdk.motion.SmotionPedometer;
 
-public class MyActivity extends Activity {
+
+public class MyActivity extends Activity implements SmotionPedometer.ChangeListener {
     TextView valuePassos;
     TextView valueCalorias;
+    Smotion motion;
+    SmotionPedometer motionPedometer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,8 +25,24 @@ public class MyActivity extends Activity {
 
         valuePassos = (TextView) findViewById(R.id.value_passos);
         valueCalorias = (TextView) findViewById(R.id.value_calorias);
+
+        motion = new Smotion();
+
+        try {
+            motion.initialize(this);
+
+            motionPedometer = new SmotionPedometer(Looper.getMainLooper(), motion);
+            motionPedometer.start(this);
+        } catch (SsdkUnsupportedException e) {
+            e.printStackTrace();
+        }
     }
 
+    @Override
+    public void onChanged(SmotionPedometer.Info info) {
+        valueCalorias.setText(Double.toString(info.getCalorie()) + " kcal");
+        valuePassos.setText(Double.toString(info.getSpeed()) + " passos");
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

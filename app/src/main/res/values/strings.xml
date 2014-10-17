@@ -8,5 +8,7 @@
     <string name="lbl_calorias">Calorias</string>
     <string name="value_init_passos">0 passos</string>
     <string name="value_init_calorias">0 kcal</string>
+    <string name="txt_passos">passos</string>
+    <string name="txt_calorias">kcal</string>
 
 </resources>
